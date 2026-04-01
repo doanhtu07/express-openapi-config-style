@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
-import { mapperKey, type ResponseMapper } from '../../utils/api-mapper.js';
 import type z from 'zod';
 import type { GreetingRemoteResultSchema, GreetingResultSchema } from '../schemas.js';
+import { mapperKey, type ResponseMapper } from 'route-toolkit';
 
 const responseMappers: Record<string, ResponseMapper> = {
   [mapperKey('GET', '/greeting')]: (req, res, data): z.infer<typeof GreetingResultSchema> => {

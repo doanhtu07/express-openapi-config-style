@@ -1,6 +1,6 @@
 import type z from 'zod';
-import type { ApiConfigCollection } from '../utils/api-config.js';
 import { GreetingResultSchema } from './schemas.js';
+import type { ApiConfigCollection } from 'route-toolkit';
 
 export const demoRoutes: ApiConfigCollection = [
   {
@@ -12,5 +12,6 @@ export const demoRoutes: ApiConfigCollection = [
       } as z.infer<typeof GreetingResultSchema>);
     },
     resultSchema: GreetingResultSchema,
+    operationId: 'getGreeting',
   },
 ];

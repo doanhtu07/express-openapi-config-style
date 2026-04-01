@@ -1,0 +1,8 @@
+packages:
+  - "client"
+  - "route-toolkit"
+  - "express-server"
+  - "express-remote-server"
+
+allowBuilds:
+  esbuild: true

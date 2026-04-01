@@ -7,7 +7,8 @@ function toOpenApiPath(endpoint: string): string {
 
 export function registerOpenApiRoutes(routes: ApiConfigCollection): void {
   for (const route of routes) {
-    const { endpoint, method, bodySchema, paramsSchema, querySchema, resultSchema } = route;
+    const { endpoint, method, bodySchema, paramsSchema, querySchema, resultSchema, operationId } =
+      route;
 
     openapiRegistry.registerPath({
       method: method.toLowerCase() as Lowercase<typeof method>,
@@ -36,6 +37,8 @@ export function registerOpenApiRoutes(routes: ApiConfigCollection): void {
           }),
         },
       },
+
+      operationId,
     });
   }
 }

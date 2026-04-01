@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'express';
-import { proxyRequest } from '../../utils/proxy.js';
 import { mapRequest } from './request-mappers.js';
 import { mapResponse } from './response-mappers.js';
+import { proxyRequest } from 'route-toolkit';
 
 export const demoRemoteResolver: RequestHandler = async (req, res, next) => {
   try {

@@ -1,12 +1,11 @@
 import { OpenApiGeneratorV31 } from '@asteasolutions/zod-to-openapi';
 import { writeFileSync } from 'node:fs';
-import { openapiRegistry } from '../utils/openapi-registry.js';
-import { demoRoutes } from '../demo/routes.js';
-import { registerOpenApiRoutes } from '../utils/register-openapi-routes.js';
+import { openapiRegistry, registerOpenApiRoutes, type ApiConfigCollection } from 'route-toolkit';
+import { appRoutes } from '../src/app-routes.js';
 
-registerOpenApiRoutes(demoRoutes);
+export function generateOpenApiSpec(routes: ApiConfigCollection): void {
+  registerOpenApiRoutes(routes);
 
-export function generateOpenApiSpec(): void {
   const generator = new OpenApiGeneratorV31(openapiRegistry.definitions);
 
   const spec = generator.generateDocument({
@@ -22,4 +21,4 @@ export function generateOpenApiSpec(): void {
   console.info('[openapi] spec written to openapi.json');
 }
 
-generateOpenApiSpec();
+generateOpenApiSpec(appRoutes);

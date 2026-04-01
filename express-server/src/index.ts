@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { registerRoutes } from './utils/register-routes.js';
-import { demoRoutes } from './demo/routes.js';
+import { appRoutes } from './app-routes.js';
+import { registerRoutes } from 'route-toolkit';
 
 dotenv.config();
 
@@ -9,7 +9,7 @@ const PORT = process.env.PORT;
 
 const app = express();
 
-registerRoutes(app, demoRoutes);
+registerRoutes(app, appRoutes);
 
 app
   .listen(PORT, () => {

@@ -1,17 +1,22 @@
 {
-  "name": "express-server",
+  "name": "route-toolkit",
   "version": "1.0.0",
   "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
     "dev": "dotenv -e ./.env -- nodemon --inspect=9229",
-    "copy-env": "cp ./.env.example ./.env",
-    "openapi": "tsx scripts/generate-openapi.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write ."
   },
   "dependencies": {
-    "route-toolkit": "workspace:*",
     "@asteasolutions/zod-to-openapi": "^8.5.0",
     "axios": "^1.14.0",
     "express": "^5.2.1",

@@ -15,6 +15,9 @@ export type ApiConfig = {
   paramsSchema?: ZodObject;
   querySchema?: ZodObject;
   resultSchema?: ZodObject;
+
+  // metadata
+  operationId: string;
 };
 
 export type ApiConfigCollection = ApiConfig[];

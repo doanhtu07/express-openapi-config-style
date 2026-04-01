@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { mapperKey, type MappedRequest, type RequestMapper } from '../../utils/api-mapper.js';
+import { mapperKey, type MappedRequest, type RequestMapper } from 'route-toolkit';
 
 const requestMappers: Record<string, RequestMapper> = {
   [mapperKey('GET', '/greeting')]: () => {
