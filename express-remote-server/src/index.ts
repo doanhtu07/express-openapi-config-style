@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { registerRoutes } from './utils/register-routes.js';
-import { demoRoutes } from './demo/demo-routes.js';
+import { demoRoutes } from './demo/routes.js';
 
 dotenv.config();
 

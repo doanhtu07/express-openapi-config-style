@@ -1,7 +1,7 @@
 import { OpenApiGeneratorV31 } from '@asteasolutions/zod-to-openapi';
 import { writeFileSync } from 'node:fs';
 import { openapiRegistry } from '../utils/openapi-registry.js';
-import { demoRoutes } from '../demo/demo-routes.js';
+import { demoRoutes } from '../demo/routes.js';
 import { registerOpenApiRoutes } from '../utils/register-openapi-routes.js';
 
 registerOpenApiRoutes(demoRoutes);
