@@ -1,5 +1,14 @@
 import { useMemo } from 'react';
-import { demoPutUpdateGreeting, useDemoGetGreeting } from './orval/default';
+import {
+  demoPutUpdateGreeting,
+  getDemoGetGreetingQueryKey,
+  useDemoGetGreeting,
+} from './orval/default';
+import { QueryClient } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
+
+// MARK: Store
 
 class ExampleStore {
   public convertGreeting = (greeting: string | undefined): string => {
@@ -8,7 +17,8 @@ class ExampleStore {
 
   public updateGreeting = async (newGreeting: string) => {
     try {
-      return await demoPutUpdateGreeting({ newGreeting });
+      const result = await demoPutUpdateGreeting({ newGreeting });
+      await queryClient.invalidateQueries({ queryKey: getDemoGetGreetingQueryKey() });
     } catch (error) {
       console.error('Failed to update greeting:', error);
     }
@@ -16,6 +26,8 @@ class ExampleStore {
 }
 
 const exampleStore = new ExampleStore();
+
+// MARK: Component
 
 const ExampleComponent = () => {
   const { data, error, isLoading } = useDemoGetGreeting({
