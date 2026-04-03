@@ -6,31 +6,73 @@
   },
   "components": {
     "schemas": {
-      "GreetingResult": {
+      "DemoGetGreetingResultSchema": {
         "type": "object",
         "properties": {
           "message": {
             "type": "string"
           }
         },
-        "required": [
-          "message"
-        ]
+        "required": ["message"]
+      },
+      "DemoPutUpdateGreetingResultSchema": {
+        "type": "object",
+        "properties": {
+          "greeting": {
+            "type": "string"
+          }
+        },
+        "required": ["greeting"]
+      },
+      "DemoPutUpdateGreetingBodySchema": {
+        "type": "object",
+        "properties": {
+          "newGreeting": {
+            "type": "string"
+          }
+        },
+        "required": ["newGreeting"]
       }
     },
     "parameters": {}
   },
   "paths": {
-    "/test-remote": {
+    "/demo/v1/get-greeting": {
       "get": {
-        "operationId": "getTestRemoteGreeting",
+        "operationId": "DemoGetGreeting",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GreetingResult"
+                  "$ref": "#/components/schemas/DemoGetGreetingResultSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/demo/v1/update-greeting": {
+      "put": {
+        "operationId": "DemoPutUpdateGreeting",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DemoPutUpdateGreetingBodySchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemoPutUpdateGreetingResultSchema"
                 }
               }
             }

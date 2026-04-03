@@ -6,16 +6,32 @@
   },
   "components": {
     "schemas": {
-      "GreetingResult": {
+      "DemoGetGreetingResultSchema": {
         "type": "object",
         "properties": {
           "greeting": {
             "type": "string"
           }
         },
-        "required": [
-          "greeting"
-        ]
+        "required": ["greeting"]
+      },
+      "DemoPutGreetingResultSchema": {
+        "type": "object",
+        "properties": {
+          "greeting": {
+            "type": "string"
+          }
+        },
+        "required": ["greeting"]
+      },
+      "DemoPutGreetingBodySchema": {
+        "type": "object",
+        "properties": {
+          "newGreeting": {
+            "type": "string"
+          }
+        },
+        "required": ["newGreeting"]
       }
     },
     "parameters": {}
@@ -23,14 +39,38 @@
   "paths": {
     "/greeting": {
       "get": {
-        "operationId": "getGreeting",
+        "operationId": "DemoGetGreeting",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GreetingResult"
+                  "$ref": "#/components/schemas/DemoGetGreetingResultSchema"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "DemoPutGreeting",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DemoPutGreetingBodySchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemoPutGreetingResultSchema"
                 }
               }
             }

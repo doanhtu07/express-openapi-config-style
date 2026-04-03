@@ -3,18 +3,18 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "dotenv -e ./.env -- nodemon --inspect=9229",
+    "dev": "rimraf ./dist && dotenv -e ./.env -- nodemon --inspect=9229",
     "copy-env": "cp ./.env.example ./.env",
-    "openapi": "tsx scripts/generate-openapi.ts",
+    "openapi": "tsx scripts/generate-openapi.ts && prettier --write openapi.json",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write ."
   },
   "dependencies": {
-    "route-toolkit": "workspace:*",
     "@asteasolutions/zod-to-openapi": "^8.5.0",
     "axios": "^1.14.0",
     "express": "^5.2.1",
+    "route-toolkit": "workspace:*",
     "zod": "^4.3.6"
   },
   "devDependencies": {
@@ -26,6 +26,7 @@
     "eslint-config-prettier": "^10.1.8",
     "nodemon": "^3.1.14",
     "prettier": "^3.8.1",
+    "rimraf": "^6.1.3",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.0"

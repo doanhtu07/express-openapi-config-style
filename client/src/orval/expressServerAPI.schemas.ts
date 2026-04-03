@@ -4,6 +4,14 @@
  * Express Server API
  * OpenAPI spec version: 1.0.0
  */
-export interface GreetingResult {
+export interface DemoGetGreetingResultSchema {
   message: string;
+}
+
+export interface DemoPutUpdateGreetingResultSchema {
+  greeting: string;
+}
+
+export interface DemoPutUpdateGreetingBodySchema {
+  newGreeting: string;
 }

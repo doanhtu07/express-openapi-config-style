@@ -4,80 +4,81 @@
  * Express Server API
  * OpenAPI spec version: 1.0.0
  */
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import type {
   DataTag,
   DefinedInitialDataOptions,
   DefinedUseQueryResult,
+  MutationFunction,
   QueryClient,
   QueryFunction,
   QueryKey,
   UndefinedInitialDataOptions,
+  UseMutationOptions,
+  UseMutationResult,
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import type { GreetingResult } from './expressServerAPI.schemas';
+import type {
+  DemoGetGreetingResultSchema,
+  DemoPutUpdateGreetingBodySchema,
+  DemoPutUpdateGreetingResultSchema,
+} from './expressServerAPI.schemas';
 
 import { axiosApi } from '../api/axios';
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-export const getTestRemoteGreeting = (
+export const demoGetGreeting = (
   options?: SecondParameter<typeof axiosApi>,
   signal?: AbortSignal,
 ) => {
-  return axiosApi<GreetingResult>(
-    { url: `/test-remote`, method: 'GET', ...(signal ? { signal } : {}) },
+  return axiosApi<DemoGetGreetingResultSchema>(
+    { url: `/demo/v1/get-greeting`, method: 'GET', ...(signal ? { signal } : {}) },
     options,
   );
 };
 
-export const getGetTestRemoteGreetingQueryKey = () => {
-  return [`/test-remote`] as const;
+export const getDemoGetGreetingQueryKey = () => {
+  return [`/demo/v1/get-greeting`] as const;
 };
 
-export const getGetTestRemoteGreetingQueryOptions = <
-  TData = Awaited<ReturnType<typeof getTestRemoteGreeting>>,
+export const getDemoGetGreetingQueryOptions = <
+  TData = Awaited<ReturnType<typeof demoGetGreeting>>,
   TError = unknown,
 >(options?: {
-  query?: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof getTestRemoteGreeting>>, TError, TData>
-  >;
+  query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof demoGetGreeting>>, TError, TData>>;
   request?: SecondParameter<typeof axiosApi>;
 }) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getGetTestRemoteGreetingQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getDemoGetGreetingQueryKey();
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getTestRemoteGreeting>>> = ({ signal }) =>
-    getTestRemoteGreeting(requestOptions, signal);
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof demoGetGreeting>>> = ({ signal }) =>
+    demoGetGreeting(requestOptions, signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getTestRemoteGreeting>>,
+    Awaited<ReturnType<typeof demoGetGreeting>>,
     TError,
     TData
   > & { queryKey: DataTag<QueryKey, TData, TError> };
 };
 
-export type GetTestRemoteGreetingQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getTestRemoteGreeting>>
->;
-export type GetTestRemoteGreetingQueryError = unknown;
+export type DemoGetGreetingQueryResult = NonNullable<Awaited<ReturnType<typeof demoGetGreeting>>>;
+export type DemoGetGreetingQueryError = unknown;
 
-export function useGetTestRemoteGreeting<
-  TData = Awaited<ReturnType<typeof getTestRemoteGreeting>>,
+export function useDemoGetGreeting<
+  TData = Awaited<ReturnType<typeof demoGetGreeting>>,
   TError = unknown,
 >(
   options: {
-    query: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getTestRemoteGreeting>>, TError, TData>
-    > &
+    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof demoGetGreeting>>, TError, TData>> &
       Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTestRemoteGreeting>>,
+          Awaited<ReturnType<typeof demoGetGreeting>>,
           TError,
-          Awaited<ReturnType<typeof getTestRemoteGreeting>>
+          Awaited<ReturnType<typeof demoGetGreeting>>
         >,
         'initialData'
       >;
@@ -85,19 +86,17 @@ export function useGetTestRemoteGreeting<
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
-export function useGetTestRemoteGreeting<
-  TData = Awaited<ReturnType<typeof getTestRemoteGreeting>>,
+export function useDemoGetGreeting<
+  TData = Awaited<ReturnType<typeof demoGetGreeting>>,
   TError = unknown,
 >(
   options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getTestRemoteGreeting>>, TError, TData>
-    > &
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof demoGetGreeting>>, TError, TData>> &
       Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTestRemoteGreeting>>,
+          Awaited<ReturnType<typeof demoGetGreeting>>,
           TError,
-          Awaited<ReturnType<typeof getTestRemoteGreeting>>
+          Awaited<ReturnType<typeof demoGetGreeting>>
         >,
         'initialData'
       >;
@@ -105,32 +104,28 @@ export function useGetTestRemoteGreeting<
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
-export function useGetTestRemoteGreeting<
-  TData = Awaited<ReturnType<typeof getTestRemoteGreeting>>,
+export function useDemoGetGreeting<
+  TData = Awaited<ReturnType<typeof demoGetGreeting>>,
   TError = unknown,
 >(
   options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getTestRemoteGreeting>>, TError, TData>
-    >;
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof demoGetGreeting>>, TError, TData>>;
     request?: SecondParameter<typeof axiosApi>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
-export function useGetTestRemoteGreeting<
-  TData = Awaited<ReturnType<typeof getTestRemoteGreeting>>,
+export function useDemoGetGreeting<
+  TData = Awaited<ReturnType<typeof demoGetGreeting>>,
   TError = unknown,
 >(
   options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getTestRemoteGreeting>>, TError, TData>
-    >;
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof demoGetGreeting>>, TError, TData>>;
     request?: SecondParameter<typeof axiosApi>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
-  const queryOptions = getGetTestRemoteGreetingQueryOptions(options);
+  const queryOptions = getDemoGetGreetingQueryOptions(options);
 
   const query = useQuery(queryOptions, queryClient) as UseQueryResult<TData, TError> & {
     queryKey: DataTag<QueryKey, TData, TError>;
@@ -138,3 +133,82 @@ export function useGetTestRemoteGreeting<
 
   return { ...query, queryKey: queryOptions.queryKey };
 }
+
+export const demoPutUpdateGreeting = (
+  demoPutUpdateGreetingBodySchema: DemoPutUpdateGreetingBodySchema,
+  options?: SecondParameter<typeof axiosApi>,
+  signal?: AbortSignal,
+) => {
+  return axiosApi<DemoPutUpdateGreetingResultSchema>(
+    {
+      url: `/demo/v1/update-greeting`,
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      data: demoPutUpdateGreetingBodySchema,
+      ...(signal ? { signal } : {}),
+    },
+    options,
+  );
+};
+
+export const getDemoPutUpdateGreetingMutationOptions = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof demoPutUpdateGreeting>>,
+    TError,
+    { data: DemoPutUpdateGreetingBodySchema },
+    TContext
+  >;
+  request?: SecondParameter<typeof axiosApi>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof demoPutUpdateGreeting>>,
+  TError,
+  { data: DemoPutUpdateGreetingBodySchema },
+  TContext
+> => {
+  const mutationKey = ['demoPutUpdateGreeting'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof demoPutUpdateGreeting>>,
+    { data: DemoPutUpdateGreetingBodySchema }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return demoPutUpdateGreeting(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type DemoPutUpdateGreetingMutationResult = NonNullable<
+  Awaited<ReturnType<typeof demoPutUpdateGreeting>>
+>;
+export type DemoPutUpdateGreetingMutationBody = DemoPutUpdateGreetingBodySchema;
+export type DemoPutUpdateGreetingMutationError = unknown;
+
+export const useDemoPutUpdateGreeting = <TError = unknown, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<typeof demoPutUpdateGreeting>>,
+      TError,
+      { data: DemoPutUpdateGreetingBodySchema },
+      TContext
+    >;
+    request?: SecondParameter<typeof axiosApi>;
+  },
+  queryClient?: QueryClient,
+): UseMutationResult<
+  Awaited<ReturnType<typeof demoPutUpdateGreeting>>,
+  TError,
+  { data: DemoPutUpdateGreetingBodySchema },
+  TContext
+> => {
+  return useMutation(getDemoPutUpdateGreetingMutationOptions(options), queryClient);
+};

@@ -6,3 +6,4 @@ export * from './proxy.js';
 export * from './register-openapi-routes.js';
 export * from './register-routes.js';
 export * from './route-context.js';
+export * from './middlewares/validators.js';

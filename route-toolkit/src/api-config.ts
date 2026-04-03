@@ -3,6 +3,8 @@ import type { ZodObject } from 'zod';
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'HEAD' | 'OPTIONS';
 
+export type SchemaType = 'body' | 'params' | 'query' | 'result';
+
 export type ApiConfig = {
   endpoint: string;
   remoteEndpoint?: string;

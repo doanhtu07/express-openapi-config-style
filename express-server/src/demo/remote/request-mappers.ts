@@ -1,9 +1,19 @@
 import type { Request, Response } from 'express';
 import { mapperKey, type MappedRequest, type RequestMapper } from 'route-toolkit';
+import { DemoRemoteEndpoints } from '../endpoints.js';
+import type z from 'zod';
+import type { DemoPutUpdateGreetingBodySchema } from '../schemas.js';
 
 const requestMappers: Record<string, RequestMapper> = {
-  [mapperKey('GET', '/greeting')]: () => {
+  [mapperKey('GET', DemoRemoteEndpoints.greeting)]: () => {
     return {};
+  },
+  [mapperKey('PUT', DemoRemoteEndpoints.greeting)]: (req) => {
+    const body = req.body as z.infer<typeof DemoPutUpdateGreetingBodySchema>;
+
+    return {
+      data: body,
+    };
   },
 };
 

@@ -16,6 +16,9 @@ importers:
       axios:
         specifier: ^1.14.0
         version: 1.14.0
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -23,6 +26,9 @@ importers:
       '@types/node':
         specifier: ^25.5.0
         version: 25.5.0
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
       dotenv:
         specifier: ^17.3.1
         version: 17.3.1
@@ -96,6 +102,9 @@ importers:
       prettier:
         specifier: ^3.8.1
         version: 3.8.1
+      rimraf:
+        specifier: ^6.1.3
+        version: 6.1.3
       tsx:
         specifier: ^4.21.0
         version: 4.21.0
@@ -148,6 +157,9 @@ importers:
       prettier:
         specifier: ^3.8.1
         version: 3.8.1
+      rimraf:
+        specifier: ^6.1.3
+        version: 6.1.3
       tsx:
         specifier: ^4.21.0
         version: 4.21.0
@@ -724,6 +736,9 @@ packages:
   '@types/range-parser@1.2.7':
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
 
+  '@types/react@19.2.14':
+    resolution: {integrity: sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==}
+
   '@types/send@1.2.1':
     resolution: {integrity: sha512-arsCikDvlU99zl1g69TcAB3mzZPpxgw0UQnaHeC1Nwb015xp8bknZv5rIfri9xTOcMuaVgvabfIRA7PSZVuZIQ==}
 
@@ -947,6 +962,9 @@ packages:
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
+
+  csstype@3.2.3:
+    resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -2390,6 +2408,10 @@ snapshots:
 
   '@types/range-parser@1.2.7': {}
 
+  '@types/react@19.2.14':
+    dependencies:
+      csstype: 3.2.3
+
   '@types/send@1.2.1':
     dependencies:
       '@types/node': 25.5.0
@@ -2640,6 +2662,8 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  csstype@3.2.3: {}
 
   debug@4.4.3(supports-color@5.5.0):
     dependencies:
