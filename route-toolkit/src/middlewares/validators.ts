@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'express';
-import type { ApiConfig } from '../api-config.js';
+import type { ApiConfig } from '../api/api-config.js';
 
 export function validateBody(): RequestHandler {
   return (req, res, next) => {

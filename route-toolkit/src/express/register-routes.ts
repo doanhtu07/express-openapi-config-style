@@ -1,7 +1,7 @@
 import express, { type Application } from 'express';
-import type { ApiConfigCollection } from './api-config.js';
+import type { ApiConfigCollection } from '../api/api-config.js';
 import { injectRouteContext } from './route-context.js';
-import { registerOpenApiRoutes } from './register-openapi-routes.js';
+import { registerOpenApiRoutes } from '../openapi/register-openapi-routes.js';
 
 export function registerRoutes(app: Application, routes: ApiConfigCollection): void {
   for (const route of routes) {

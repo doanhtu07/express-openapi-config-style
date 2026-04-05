@@ -1,6 +1,6 @@
 import { OpenApiGeneratorV31 } from '@asteasolutions/zod-to-openapi';
 import { writeFileSync } from 'node:fs';
-import type { ApiConfigCollection } from './api-config.js';
+import type { ApiConfigCollection } from '../api/api-config.js';
 import { registerOpenApiRoutes } from './register-openapi-routes.js';
 import { openapiRegistry } from './openapi-registry.js';
 

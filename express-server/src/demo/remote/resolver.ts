@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'express';
-import { mapRequest } from './request-mappers.js';
-import { mapResponse } from './response-mappers.js';
-import { proxyRequest } from 'route-toolkit';
+import { mapRequest, mapResponse, proxyRequest } from 'route-toolkit';
+import { requestMappers } from './request-mappers.js';
+import { responseMappers } from './response-mappers.js';
 
 export const demoRemoteResolver: RequestHandler = async (req, res, next) => {
   try {
@@ -12,10 +12,17 @@ export const demoRemoteResolver: RequestHandler = async (req, res, next) => {
       return;
     }
 
+    const mappedInput = mapRequest({ req, res, requestMappers });
+
     const remoteBaseUrl = 'http://localhost:4000';
-    const mappedInput = mapRequest(req, res);
-    const remoteData = await proxyRequest(remoteBaseUrl, remoteEndpoint, method, mappedInput);
-    const mappedOutput = mapResponse(req, res, remoteData);
+    const remoteData = await proxyRequest({
+      baseUrl: remoteBaseUrl,
+      remoteEndpoint,
+      method,
+      mappedRequest: mappedInput,
+    });
+
+    const mappedOutput = mapResponse({ req, res, data: remoteData, responseMappers });
 
     res.status(200).json(mappedOutput);
   } catch (err) {

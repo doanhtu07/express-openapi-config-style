@@ -1,4 +1,4 @@
-import type { ApiConfigCollection } from './api-config.js';
+import type { ApiConfigCollection } from '../api/api-config.js';
 import { openapiRegistry } from './openapi-registry.js';
 
 function toOpenApiPath(endpoint: string): string {

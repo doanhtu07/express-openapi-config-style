@@ -1,4 +1,4 @@
-import type { ApiConfig } from '../utils/api-config.ts';
+import type { ApiConfig } from 'route-toolkit';
 
 declare global {
   namespace Express {

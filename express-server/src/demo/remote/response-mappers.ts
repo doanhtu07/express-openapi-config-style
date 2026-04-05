@@ -1,4 +1,3 @@
-import type { Request, Response } from 'express';
 import type z from 'zod';
 import type {
   DemoGetGreetingRemoteResultSchema,
@@ -8,7 +7,7 @@ import type {
 import { mapperKey, type ResponseMapper } from 'route-toolkit';
 import { DemoRemoteEndpoints } from '../endpoints.js';
 
-const responseMappers: Record<string, ResponseMapper> = {
+export const responseMappers: Record<string, ResponseMapper> = {
   [mapperKey('GET', DemoRemoteEndpoints.greeting)]: (
     req,
     res,
@@ -29,9 +28,3 @@ const responseMappers: Record<string, ResponseMapper> = {
     return d;
   },
 };
-
-export function mapResponse(req: Request, res: Response, data: unknown): unknown {
-  const { method, remoteEndpoint } = res.locals.routeConfig;
-  const mapper = remoteEndpoint ? responseMappers[mapperKey(method, remoteEndpoint)] : undefined;
-  return mapper?.(req, res, data) || data;
-}
