@@ -1,5 +1,0 @@
-{
-  "watch": ["src", "index.js", "tsconfig.json"],
-  "ext": "ts,js",
-  "exec": "tsup || true && node ./dist/index.cjs"
-}

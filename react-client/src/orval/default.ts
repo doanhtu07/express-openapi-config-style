@@ -4,7 +4,7 @@
  * Express Server API
  * OpenAPI spec version: 1.0.0
  */
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query'
 import type {
   DataTag,
   DefinedInitialDataOptions,
@@ -18,62 +18,73 @@ import type {
   UseMutationResult,
   UseQueryOptions,
   UseQueryResult,
-} from '@tanstack/react-query';
+} from '@tanstack/react-query'
 
 import type {
   DemoGetGreetingResultSchema,
   DemoPutUpdateGreetingBodySchema,
   DemoPutUpdateGreetingResultSchema,
-} from './expressServerAPI.schemas';
+} from './expressServerAPI.schemas'
 
-import { axiosApi } from '../api/axios';
+import { axiosApi } from '../api/axios'
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1]
 
 export const demoGetGreeting = (
   options?: SecondParameter<typeof axiosApi>,
   signal?: AbortSignal,
 ) => {
   return axiosApi<DemoGetGreetingResultSchema>(
-    { url: `/demo/v1/get-greeting`, method: 'GET', ...(signal ? { signal } : {}) },
+    { url: `/demo/v1/get-greeting`, method: 'GET', signal },
     options,
-  );
-};
+  )
+}
 
 export const getDemoGetGreetingQueryKey = () => {
-  return [`/demo/v1/get-greeting`] as const;
-};
+  return [`/demo/v1/get-greeting`] as const
+}
 
 export const getDemoGetGreetingQueryOptions = <
   TData = Awaited<ReturnType<typeof demoGetGreeting>>,
   TError = unknown,
 >(options?: {
-  query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof demoGetGreeting>>, TError, TData>>;
-  request?: SecondParameter<typeof axiosApi>;
+  query?: Partial<
+    UseQueryOptions<Awaited<ReturnType<typeof demoGetGreeting>>, TError, TData>
+  >
+  request?: SecondParameter<typeof axiosApi>
 }) => {
-  const { query: queryOptions, request: requestOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {}
 
-  const queryKey = queryOptions?.queryKey ?? getDemoGetGreetingQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getDemoGetGreetingQueryKey()
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof demoGetGreeting>>> = ({ signal }) =>
-    demoGetGreeting(requestOptions, signal);
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof demoGetGreeting>>> = ({
+    signal,
+  }) => demoGetGreeting(requestOptions, signal)
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof demoGetGreeting>>,
     TError,
     TData
-  > & { queryKey: DataTag<QueryKey, TData, TError> };
-};
+  > & { queryKey: DataTag<QueryKey, TData, TError> }
+}
 
-export type DemoGetGreetingQueryResult = NonNullable<Awaited<ReturnType<typeof demoGetGreeting>>>;
-export type DemoGetGreetingQueryError = unknown;
+export type DemoGetGreetingQueryResult = NonNullable<
+  Awaited<ReturnType<typeof demoGetGreeting>>
+>
+export type DemoGetGreetingQueryError = unknown
 
 export function useDemoGetGreeting<
   TData = Awaited<ReturnType<typeof demoGetGreeting>>,
   TError = unknown,
 >(
   options: {
-    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof demoGetGreeting>>, TError, TData>> &
+    query: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<typeof demoGetGreeting>>,
+        TError,
+        TData
+      >
+    > &
       Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof demoGetGreeting>>,
@@ -81,17 +92,25 @@ export function useDemoGetGreeting<
           Awaited<ReturnType<typeof demoGetGreeting>>
         >,
         'initialData'
-      >;
-    request?: SecondParameter<typeof axiosApi>;
+      >
+    request?: SecondParameter<typeof axiosApi>
   },
   queryClient?: QueryClient,
-): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+): DefinedUseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>
+}
 export function useDemoGetGreeting<
   TData = Awaited<ReturnType<typeof demoGetGreeting>>,
   TError = unknown,
 >(
   options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof demoGetGreeting>>, TError, TData>> &
+    query?: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<typeof demoGetGreeting>>,
+        TError,
+        TData
+      >
+    > &
       Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof demoGetGreeting>>,
@@ -99,39 +118,58 @@ export function useDemoGetGreeting<
           Awaited<ReturnType<typeof demoGetGreeting>>
         >,
         'initialData'
-      >;
-    request?: SecondParameter<typeof axiosApi>;
+      >
+    request?: SecondParameter<typeof axiosApi>
   },
   queryClient?: QueryClient,
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+): UseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>
+}
 export function useDemoGetGreeting<
   TData = Awaited<ReturnType<typeof demoGetGreeting>>,
   TError = unknown,
 >(
   options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof demoGetGreeting>>, TError, TData>>;
-    request?: SecondParameter<typeof axiosApi>;
+    query?: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<typeof demoGetGreeting>>,
+        TError,
+        TData
+      >
+    >
+    request?: SecondParameter<typeof axiosApi>
   },
   queryClient?: QueryClient,
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+): UseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>
+}
 
 export function useDemoGetGreeting<
   TData = Awaited<ReturnType<typeof demoGetGreeting>>,
   TError = unknown,
 >(
   options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof demoGetGreeting>>, TError, TData>>;
-    request?: SecondParameter<typeof axiosApi>;
+    query?: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<typeof demoGetGreeting>>,
+        TError,
+        TData
+      >
+    >
+    request?: SecondParameter<typeof axiosApi>
   },
   queryClient?: QueryClient,
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
-  const queryOptions = getDemoGetGreetingQueryOptions(options);
+): UseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>
+} {
+  const queryOptions = getDemoGetGreetingQueryOptions(options)
 
-  const query = useQuery(queryOptions, queryClient) as UseQueryResult<TData, TError> & {
-    queryKey: DataTag<QueryKey, TData, TError>;
-  };
+  const query = useQuery(queryOptions, queryClient) as UseQueryResult<
+    TData,
+    TError
+  > & { queryKey: DataTag<QueryKey, TData, TError> }
 
-  return { ...query, queryKey: queryOptions.queryKey };
+  return { ...query, queryKey: queryOptions.queryKey }
 }
 
 export const demoPutUpdateGreeting = (
@@ -145,11 +183,11 @@ export const demoPutUpdateGreeting = (
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       data: demoPutUpdateGreetingBodySchema,
-      ...(signal ? { signal } : {}),
+      signal,
     },
     options,
-  );
-};
+  )
+}
 
 export const getDemoPutUpdateGreetingMutationOptions = <
   TError = unknown,
@@ -160,38 +198,40 @@ export const getDemoPutUpdateGreetingMutationOptions = <
     TError,
     { data: DemoPutUpdateGreetingBodySchema },
     TContext
-  >;
-  request?: SecondParameter<typeof axiosApi>;
+  >
+  request?: SecondParameter<typeof axiosApi>
 }): UseMutationOptions<
   Awaited<ReturnType<typeof demoPutUpdateGreeting>>,
   TError,
   { data: DemoPutUpdateGreetingBodySchema },
   TContext
 > => {
-  const mutationKey = ['demoPutUpdateGreeting'];
+  const mutationKey = ['demoPutUpdateGreeting']
   const { mutation: mutationOptions, request: requestOptions } = options
-    ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
+    ? options.mutation &&
+      'mutationKey' in options.mutation &&
+      options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, request: undefined };
+    : { mutation: { mutationKey }, request: undefined }
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof demoPutUpdateGreeting>>,
     { data: DemoPutUpdateGreetingBodySchema }
   > = (props) => {
-    const { data } = props ?? {};
+    const { data } = props ?? {}
 
-    return demoPutUpdateGreeting(data, requestOptions);
-  };
+    return demoPutUpdateGreeting(data, requestOptions)
+  }
 
-  return { mutationFn, ...mutationOptions };
-};
+  return { mutationFn, ...mutationOptions }
+}
 
 export type DemoPutUpdateGreetingMutationResult = NonNullable<
   Awaited<ReturnType<typeof demoPutUpdateGreeting>>
->;
-export type DemoPutUpdateGreetingMutationBody = DemoPutUpdateGreetingBodySchema;
-export type DemoPutUpdateGreetingMutationError = unknown;
+>
+export type DemoPutUpdateGreetingMutationBody = DemoPutUpdateGreetingBodySchema
+export type DemoPutUpdateGreetingMutationError = unknown
 
 export const useDemoPutUpdateGreeting = <TError = unknown, TContext = unknown>(
   options?: {
@@ -200,8 +240,8 @@ export const useDemoPutUpdateGreeting = <TError = unknown, TContext = unknown>(
       TError,
       { data: DemoPutUpdateGreetingBodySchema },
       TContext
-    >;
-    request?: SecondParameter<typeof axiosApi>;
+    >
+    request?: SecondParameter<typeof axiosApi>
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
@@ -210,5 +250,8 @@ export const useDemoPutUpdateGreeting = <TError = unknown, TContext = unknown>(
   { data: DemoPutUpdateGreetingBodySchema },
   TContext
 > => {
-  return useMutation(getDemoPutUpdateGreetingMutationOptions(options), queryClient);
-};
+  return useMutation(
+    getDemoPutUpdateGreetingMutationOptions(options),
+    queryClient,
+  )
+}

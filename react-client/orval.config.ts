@@ -1,16 +1,16 @@
-import { defineConfig } from 'orval';
-import dotenv from 'dotenv';
+import { defineConfig } from 'orval'
+import dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config()
 
-// const baseUrl = process.env.SERVER_URL;
-// const specUrl = `${baseUrl}/v3/api-docs`;
-const specUrl = './scripts/openapi.json';
+// const baseUrl = process.env.VITE_SERVER_URL
+// const specUrl = `${baseUrl}/v3/api-docs`
+const specUrl = './scripts/openapi.json'
 
-const axiosPath = './src/api/axios.ts';
-const axiosName = 'axiosApi';
+const axiosPath = './src/api/axios.ts'
+const axiosName = 'axiosApi'
 
-const orvalTarget = './src/orval/';
+const orvalTarget = './src/orval/'
 
 export default defineConfig({
   openapi_server: {
@@ -31,4 +31,4 @@ export default defineConfig({
       },
     },
   },
-});
+})

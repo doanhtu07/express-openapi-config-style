@@ -1,9 +1,8 @@
 import type { RequestHandler } from 'express';
-import type { ApiConfig } from '../api/api-config.js';
 
 export function validateBody(): RequestHandler {
   return (req, res, next) => {
-    const config = res.locals.routeConfig as ApiConfig;
+    const config = res.locals.routeConfig;
 
     if (!config.bodySchema) return next();
 
@@ -24,7 +23,7 @@ export function validateBody(): RequestHandler {
 
 export function validateParams(): RequestHandler {
   return (req, res, next) => {
-    const config = res.locals.routeConfig as ApiConfig;
+    const config = res.locals.routeConfig;
 
     if (!config.paramsSchema) return next();
 
@@ -45,7 +44,7 @@ export function validateParams(): RequestHandler {
 
 export function validateQuery(): RequestHandler {
   return (req, res, next) => {
-    const config = res.locals.routeConfig as ApiConfig;
+    const config = res.locals.routeConfig;
 
     if (!config.querySchema) return next();
 

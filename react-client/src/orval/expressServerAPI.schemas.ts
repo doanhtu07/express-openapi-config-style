@@ -5,13 +5,13 @@
  * OpenAPI spec version: 1.0.0
  */
 export interface DemoGetGreetingResultSchema {
-  message: string;
+  message: string
 }
 
 export interface DemoPutUpdateGreetingResultSchema {
-  greeting: string;
+  greeting: string
 }
 
 export interface DemoPutUpdateGreetingBodySchema {
-  newGreeting: string;
+  newGreeting: string
 }

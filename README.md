@@ -14,7 +14,7 @@ pnpm install
 pnpm dev
 ```
 
-## Step 2. Build demo server (http://localhost:3000)
+## Step 2. Build demo server (http://localhost:3001)
 
 ```bash
 cd express-server
@@ -34,7 +34,7 @@ pnpm dev
 
 ## Step 4. Test the endpoints
 
-- http://localhost:3000/test-remote
+- http://localhost:3001/test-remote
 - http://localhost:4000/greeting
 
 ## Step 5. Create OpenAPI spec
@@ -48,10 +48,10 @@ This will generate an OpenAPI spec file at `express-server/openapi.json`
 
 ## Step 6. Generate client code from OpenAPI spec
 
-Copy the generated `openapi.json` to the `client` directory (put into `scripts`), then run:
+Copy the generated `openapi.json` to the `react-client` directory (put into `scripts`), then run:
 
 ```bash
-cd client
+cd react-client
 pnpm install
 pnpm copy-env
 pnpm orval
@@ -61,6 +61,6 @@ It will generate client code at `src/orval/` directory
 
 It generates things like:
 
-- Types: `interface GreetingResult`
-- Fetch functions: `getTestRemoteGreeting`
-- React query hooks: `useGetTestRemoteGreeting`
+- Types: `interface DemoGetGreetingResultSchema`
+- Fetch functions: `demoGetGreeting`
+- React query hooks: `useDemoGetGreeting`

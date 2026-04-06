@@ -7,7 +7,9 @@ export const requestMappers: Record<string, RequestMapper> = {
   [mapperKey('GET', DemoRemoteEndpoints.greeting)]: () => {
     return {};
   },
-  [mapperKey('PUT', DemoRemoteEndpoints.greeting)]: (req) => {
+  [mapperKey('PUT', DemoRemoteEndpoints.greeting)]: (req, res) => {
+    // const {endpoint} = res.locals.routeConfig;
+
     const body = req.body as z.infer<typeof DemoPutUpdateGreetingBodySchema>;
 
     return {

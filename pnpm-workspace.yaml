@@ -1,8 +1,10 @@
 packages:
-  - "client"
-  - "route-toolkit"
-  - "express-server"
   - "express-remote-server"
+  - "express-server"
+  - "react-client"
+  - "route-toolkit"
 
 allowBuilds:
   esbuild: true
+  lightningcss: true
+  unrs-resolver: true
