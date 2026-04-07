@@ -1,10 +1,21 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
-import { useDemoGetGreeting } from '@/orval/default'
+import { useQuery } from '@tanstack/react-query'
+import {
+  getDemoGetGreetingQueryKey,
+  getDemoGetGreetingQueryOptions,
+} from '@/orval/default'
+
+export const routeAboutQueryKeys = {
+  demoGetGreeting: getDemoGetGreetingQueryKey(),
+} as const
 
 const About = observer(() => {
-  const { data, isLoading } = useDemoGetGreeting()
+  const { data, isLoading } = useQuery({
+    ...getDemoGetGreetingQueryOptions(),
+    queryKey: routeAboutQueryKeys.demoGetGreeting,
+  })
 
   useEffect(() => {
     console.log('=== TEST data', { message: data?.message, isLoading })
