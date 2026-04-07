@@ -7,14 +7,15 @@ import {
   getDemoGetGreetingQueryOptions,
 } from '@/orval/default'
 
+// Aggregation of query keys used in About route -> easy to bulk refresh
 export const routeAboutQueryKeys = {
-  demoGetGreeting: getDemoGetGreetingQueryKey,
+  getDemoGetGreetingQueryKey,
 } as const
 
 const About = observer(() => {
   const { data, isLoading } = useQuery({
     ...getDemoGetGreetingQueryOptions(),
-    queryKey: routeAboutQueryKeys.demoGetGreeting(),
+    queryKey: routeAboutQueryKeys.getDemoGetGreetingQueryKey(),
   })
 
   useEffect(() => {
