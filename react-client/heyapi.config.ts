@@ -10,7 +10,7 @@ export default defineConfig({
     '@tanstack/react-query',
     {
       name: '@hey-api/client-axios',
-      runtimeConfigPath: '../api/heyapi-fetch.ts', // MUST be relative to output.path
+      runtimeConfigPath: '../api/heyapi-client.ts', // MUST be relative to output.path
     },
   ],
 })
