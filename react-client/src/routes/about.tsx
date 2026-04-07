@@ -8,13 +8,13 @@ import {
 } from '@/orval/default'
 
 export const routeAboutQueryKeys = {
-  demoGetGreeting: getDemoGetGreetingQueryKey(),
+  demoGetGreeting: getDemoGetGreetingQueryKey,
 } as const
 
 const About = observer(() => {
   const { data, isLoading } = useQuery({
     ...getDemoGetGreetingQueryOptions(),
-    queryKey: routeAboutQueryKeys.demoGetGreeting,
+    queryKey: routeAboutQueryKeys.demoGetGreeting(),
   })
 
   useEffect(() => {
