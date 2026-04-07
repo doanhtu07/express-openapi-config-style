@@ -3,19 +3,26 @@ import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import {
-  getDemoGetGreetingQueryKey,
-  getDemoGetGreetingQueryOptions,
-} from '@/orval/default'
+  demoGetGreetingOptions,
+  demoGetGreetingQueryKey,
+} from '@/heyapi/@tanstack/react-query.gen'
 
 // Aggregation of query keys used in About route -> easy to bulk refresh
 export const routeAboutQueryKeys = {
-  getDemoGetGreetingQueryKey,
+  demoGetGreetingQueryKey,
 } as const
 
 const About = observer(() => {
+  // Example: Orval
+  // const { data, isLoading } = useQuery({
+  //   ...getDemoGetGreetingQueryOptions(),
+  //   queryKey: routeAboutQueryKeys.getDemoGetGreetingQueryKey(),
+  // })
+
+  // Example: HeyAPI
   const { data, isLoading } = useQuery({
-    ...getDemoGetGreetingQueryOptions(),
-    queryKey: routeAboutQueryKeys.getDemoGetGreetingQueryKey(),
+    ...demoGetGreetingOptions(),
+    queryKey: routeAboutQueryKeys.demoGetGreetingQueryKey(),
   })
 
   useEffect(() => {

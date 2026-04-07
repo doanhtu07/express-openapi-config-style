@@ -11,5 +11,10 @@ export default [
   reactPlugin.configs.flat['jsx-runtime'], // Add this if you are using React 17+
   reactHooks.configs.flat.recommended,
 
-  globalIgnores(['eslint.config.js', 'prettier.config.js', 'src/orval']),
+  globalIgnores([
+    'eslint.config.js',
+    'prettier.config.js',
+    'src/orval',
+    'src/heyapi',
+  ]),
 ]
